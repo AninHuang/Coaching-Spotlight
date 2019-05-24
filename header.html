@@ -1,0 +1,56 @@
+<style type="text/css">
+header.coaching-header {
+    display: flex;
+    align-content: space-around;
+    align-items: center;
+    min-width: 250px;
+    margin-left: 1px;
+    color: #fff;
+    background: #d04a02;
+    transition-property: width;
+    transition-timing-function: cubic-bezier(0.0, 0.0, 1.0, 1.0);
+}
+
+header.coaching-header, header.coaching-header div {
+    min-width: 654px;
+    /* Standard */
+    width: calc(100% - 150px);
+    /* WebKit */
+    width: -webkit-calc(100% - 150px);
+    /* Firefox */
+    width: -moz-calc(100% - 150px);
+    /* Opera */
+    width: -o-calc(100% - 150px);
+}
+
+header.coaching-header h1 {
+    font-size: 35px;
+    font-family: Georgia;
+    margin: 10px 0 0 20px;
+}
+
+header.coaching-header p {
+    font-size: 24px;
+    font-family: SimSun;
+    margin: 10px 0 15px 20px;
+}
+
+#coaching-img {
+    opacity: 1;
+    transition: opacity .3s;
+    transition-timing-function: cubic-bezier(0.0, 0.0, 1.0, 1.0);
+}
+
+/*@media screen and (max-width: 768px) {
+    #coaching-img {
+        opacity: 0;
+    }
+}*/
+</style>
+<header class="coaching-header">
+    <div>
+        <h1>Coaching Spotlight</h1>
+        <p>讓關係聚焦，創造高績效團隊</p>
+    </div>
+    <img id="coaching-img" src="https://pwc-pilot.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/HCCoachingBannerPhoto.jpg" width="150" height="102">
+</header>

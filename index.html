@@ -1,0 +1,656 @@
+<div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</div>
+<div>
+    <style type="text/css">
+    body {
+        position: relative;
+        color: #fff;
+        font-size: 20px;
+    }
+
+    .grid {
+        list-style: none;
+        margin-left: -40px;
+    }
+
+    .gc {
+        box-sizing: border-box;
+        display: inline-block;
+        margin-right: -.25em;
+        min-height: 1px;
+        padding-left: 40px;
+        vertical-align: top;
+    }
+
+    .gc--1-of-3 {
+        width: 33.33333%;
+    }
+
+    .gc--2-of-3 {
+        width: 66.66666%;
+    }
+
+    .naccs {
+        position: relative;
+        /* Standard */
+        width: calc(100% - 150px);
+        /* WebKit */
+        width: -webkit-calc(100% - 150px);
+        /* Firefox */
+        width: : -moz-calc(100% - 150px);
+        /* Opera */
+        width: -o-calc(100% - 150px);
+        margin: 20px 0 0 -10px;
+    }
+
+    @media screen and (max-width: 924px) {
+        .naccs .menu {
+            display: flex;
+        }
+
+        .naccs .menu div {
+            margin-right: 10px;
+        }
+
+        div.gc--2-of-3 {
+            /* Standard */
+            width: calc(100% - 50px);
+            /* WebKit */
+            width: -webkit-calc(100% - 50px);
+            /* Firefox */
+            width: : -moz-calc(100% - 50px);
+            /* Opera */
+            width: -o-calc(100% - 50px);
+        }
+    }
+
+    @media screen and (max-width: 865px) {
+        .naccs {
+            min-width: 632px;
+        }
+
+        div.gc--2-of-3 {
+            width: 100% !important;
+        }
+
+        div.MovieNoteText {
+            width: 621px;
+        }
+    }
+
+    .naccs .menu div {
+        font-size: 18px;
+        font-family: Georgia, 'SimSun';
+        padding: 15px 20px 15px 40px;
+        margin-bottom: 10px;
+        color: #d04a02;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        position: relative;
+        vertical-align: middle;
+        font-weight: 700;
+        -webkit-transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        white-space: nowrap;
+    }
+
+    .naccs .menu div:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .naccs .menu div span.light {
+        height: 7px;
+        width: 7px;
+        position: absolute;
+        top: 22px;
+        left: 18px;
+        background-color: #d04a02;
+        border-radius: 100%;
+        -webkit-transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    .naccs .menu div.active span.light {
+        background-color: #d04a02;
+        left: 0;
+        height: 100%;
+        width: 5px;
+        top: 0;
+        border-radius: 0;
+    }
+
+    .naccs .menu div.active {
+        color: #d04a02;
+        padding: 15px 20px 15px 20px;
+    }
+
+    ul.nacc {
+        font-family: Arial, 'Microsoft JhengHei', '微軟正黑體';
+        font-size: 1rem;
+        position: relative;
+        height: 0px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        -webkit-transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    ul.nacc .nacc-content {
+        opacity: 0;
+        -webkit-transform: translateX(50px);
+        transform: translateX(50px);
+        position: absolute;
+        list-style: none;
+        -webkit-transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+        transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+    ul.nacc .nacc-content.active {
+        -webkit-transition-delay: .2s;
+        transition-delay: .2s;
+        z-index: 2;
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+
+    /*ul.nacc .nacc-content p {
+    color: #000;
+    margin: 0;
+}*/
+
+
+    .card {
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+        transition: 0.3s;
+        width: auto;
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 0 0 1rem 1.5rem;
+        display: inline-block;
+    }
+
+    .card a {
+        color: #2d2d2d;
+        text-decoration: none;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+
+    .card:hover .card-container p {
+        color: #d04a02;
+    }
+
+    .card:hover img {
+        position: relative;
+        transform: scale(1.1);
+    }
+
+    .card-img img {
+        opacity: 1;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .card-container {
+        text-align: center;
+        width: auto;
+    }
+
+    .card-container p {
+        font-family: Arial, 'Microsoft JhengHei', '微軟正黑體';
+        font-size: 0.9rem;
+    }
+
+    .card-img {
+        height: auto;
+        overflow: hidden;
+    }
+
+    .card_profile {
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+        transition: 0.3s;
+        padding: 15px;
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 0 0 1rem 1.5rem;
+        display: block;
+        max-width: 530px;
+        min-width: auto;
+    }
+
+    .card_profile a {
+        color: #2d2d2d;
+        text-decoration: none;
+    }
+
+    .card_profile:hover {
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+    }
+
+    .card_profile:hover .card_profile-container span {
+        color: #d04a02;
+    }
+
+    .card_profile-img {
+        display: flex;
+        align-items: center;
+    }
+
+    .card_profile-img img {
+        opacity: 1;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .card_profile:hover .card_profile-img img {
+        opacity: 0.7;
+    }
+
+    .card_profile-container {
+        font-family: Arial, 'Microsoft JhengHei', '微軟正黑體';
+        font-size: 1rem;
+    }
+
+    .card_profile-container span {
+        font-size: 0.9rem;
+        font-weight: normal;
+    }
+
+    .MovieNoteText {
+        border: 1px #e5e5e5 solid;
+        color: #2d2d2d;
+    }
+
+    .MovieNoteText ul {
+        list-style: none;
+        padding-right: 20px;
+        margin: 15px 0;
+    }
+
+    .MovieNoteText ul li::before {
+        content: "\2022";
+        color: #d04a02;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+    }
+
+    .MovieNoteText a {
+        color: #d04a02;
+        font-weight: normal;
+        text-decoration: underline;
+    }
+
+    .MovieTypeItem {
+        color: #d04a02;
+    }
+
+    .MovieNoteText,
+    .MovieTypeItem {
+        font-family: Arial, 'Microsoft JhengHei', '微軟正黑體';
+        font-size: 1rem;
+    }
+
+    .PwCVedioNote {
+        font-family: Arial, 'Microsoft JhengHei', '微軟正黑體';
+        font-size: 0.9rem;
+        color: #808080;
+        margin: 0.5rem 0 0.6rem 0;
+    }
+
+    .MovieTypeItem i {
+        font-size: 1.2rem;
+    }
+
+    .MovieTypeItem {
+        font-weight: bold;
+        margin-bottom: 0px !important;
+    }
+    </style>
+    <div class="naccs">
+        <div class="grid">
+            <div class="gc">
+                <div class="menu">
+                    <div class="active"><span class="light"></span><span>看影片學領導</span></div>
+                    <div><span class="light"></span><span>Coaching 微電影</span></div>
+                    <div><span class="light"></span><span>Coaching 紀錄片</span></div>
+                    <div><span class="light"></span><span>Coaching 故事館</span></div>
+                </div>
+            </div>
+            <div class="gc gc--2-of-3">
+                <ul class="nacc">
+                    <!-------------------------------- 分頁：看影片學領導 -------------------------------->
+                    <li class="nacc-content active">
+                        <div class="MovieNoteText">
+                            <ul>
+                                <li>本區由合夥人親身分享與同事的相處之道，好奇他們在工作忙碌的同時，又如何兼顧帶人嗎？立刻點下圖聽合夥人現身說法。</li>
+                                <li>如有任何建議，請聯繫 HC／<a href="mailto:tc.wang@tw.pwc.com?subject=關於 【Coaching 微電影】">TC Wang (TCWA)</a>。</li>
+                            </ul>
+                        </div>
+                        <!-- 中文發音無字幕 -->
+                        <p class="MovieTypeItem"><i class="fas fa-play-circle"></i> 中文發音無字幕</p>
+                        <p class="PwCVedioNote" style="padding-left:1.5rem;">&nbsp;</p>
+                        <!-- 王方瑜／Coaching 心態 -->
+                        <div class="card">
+                            <a href="https://pwc.csod.com/LMS/Video/LaunchVideo.aspx?loid=e5248083-7eda-48ae-b174-c60f06843688" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/VideoLeadership-1-CoachingMindset.jpg" alt="王方瑜／Coaching 心態" width="210" height="118"></div>
+                                <div class="card-container">
+                                    <p><b>王方瑜／Coaching 心態</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 許祺昌／提問技巧 -->
+                        <div class="card">
+                            <a href="https://pwc.csod.com/LMS/Video/LaunchVideo.aspx?loid=aeb7338b-9024-4fbd-b061-1cee7181af74" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/VideoLeadership-2-QuestioningSkills.jpg" alt="許祺昌／提問技巧" width="210" height="118"></div>
+                                <div class="card-container">
+                                    <p><b>許祺昌／提問技巧</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 劉博文／主動傾聽 -->
+                        <div class="card">
+                            <a href="https://pwc.csod.com/LMS/Video/LaunchVideo.aspx?loid=3c1e71da-0097-4b7f-ae8e-bda6a5097b3f" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/VideoLeadership-3-ActiveListening.jpg" alt="劉博文／主動傾聽" width="210" height="118"></div>
+                                <div class="card-container">
+                                    <p><b>劉博文／主動傾聽</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 王玉娟／即時回饋 -->
+                        <div class="card">
+                            <a href="https://pwc.csod.com/LMS/Video/LaunchVideo.aspx?loid=954f5f25-c0ef-4c67-85f1-b9b691fdc036" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/VideoLeadership-4-RealTimeFeedbacks.jpg" alt="王玉娟／即時回饋" width="210" height="118"></div>
+                                <div class="card-container">
+                                    <p><b>王玉娟／即時回饋</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 林一帆／激勵與認同 -->
+                        <div class="card">
+                            <a href="https://pwc.csod.com/LMS/Video/LaunchVideo.aspx?loid=02c06a32-34f4-4022-9e67-72779d2083c4" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/VideoLeadership-5-Inspiration&amp;Recognition.jpg" alt="林一帆／激勵與認同" width="210" height="118"></div>
+                                <div class="card-container">
+                                    <p><b>林一帆／激勵與認同</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 郭柏如／觀察與同理 -->
+                        <div class="card">
+                            <a href="https://pwc.csod.com/LMS/Video/LaunchVideo.aspx?loid=3e368570-ba06-4434-9b19-e1ade2cbc3c8" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/VideoLeadership-6-Observation&amp;Empathy.jpg" alt="郭柏如／觀察與同理" width="210" height="118"></div>
+                                <div class="card-container">
+                                    <p><b>郭柏如／觀察與同理</b></p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-------------------------------- 分頁：Coaching 微電影 -------------------------------->
+                    <li class="nacc-content">
+                        <div class="MovieNoteText">
+                            <ul>
+                                <li>每部影片各具特色，值得您時時探訪、細細品味。</li>
+                                <li>如有任何建議，請聯繫 HC／<a href="mailto:tc.wang@tw.pwc.com?subject=關於 【Coaching 微電影】">TC Wang (TCWA)</a>。</li>
+                            </ul>
+                        </div>
+                        <!-- 中文發音無字幕 -->
+                        <p class="MovieTypeItem"><i class="fas fa-play-circle"></i> 中文發音無字幕</p>
+                        <p class="PwCVedioNote" style="padding-left:1.5rem;">本區影片由歷屆 Coaching Champion Programme (CCP) 參訓同仁精心製作；謝謝這些同仁的付出與分享！</p>
+                        <!-- 狗仔隊追追追 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_cv1kdmmm" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhoto20150921.jpg" alt="狗仔隊追追追" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>狗仔隊追追追</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 前期底稿沒教的事 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_2uwi2g48" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhoto201404CH1.jpg" alt="前期底稿沒教的事" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>前期底稿沒教的事</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 被代收代付的職責 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_082zigdx" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching Spotlight/MoviePreviewPhoto201404CH222.JPG" alt="被代收代付的職責" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>被代收代付的職責</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 親愛的，誰把燈關了 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_9v9sgabl" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhoto201404CH3.jpg" alt="親愛的，誰把燈關了" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>親愛的，誰把燈關了</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 搖擺不定的決策 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_arhwi0hr" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhoto201404CH4.jpg" alt="搖擺不定的決策" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>搖擺不定的決策</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 不停被轉寄的信 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_u77hqkf1" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCH2.jpg" alt="不停被轉寄的信" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>不停被轉寄的信</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 王小明為何哭了 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_inb40luz" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCH3.jpg" alt="王小明為何哭了" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>王小明為何哭了</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 我的時間是金錢 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_cm7alcyo" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCH4.jpg" alt="我的時間是金錢" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>我的時間是金錢</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 夜半的叮叮聲 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_abx1perz" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCH5.jpg" alt="夜半的叮叮聲" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>夜半的叮叮聲</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 大桌前的靜默 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_q6zdzbwn" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCH1.jpg" alt="大桌前的靜默" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>大桌前的靜默</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 等你等到我心痛 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_a87xhkix" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCH6.jpg" alt="等你等到我心痛" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>等你等到我心痛</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 英文發音英文字幕 -->
+                        <p class="MovieTypeItem"><i class="fas fa-play-circle"></i> 英文發音英文字幕</p>
+                        <p class="PwCVedioNote" style="padding-left:1.5rem;">本區影片由 PwC US Firm 製作分享，讓我們一起感受跨越國界的 Coaching 影響力。</p>
+                        <!-- 雪片般飛來的信 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_wjj6nnts" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoEN3.jpg" alt="雪片般飛來的信" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>雪片般飛來的信</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 時間是喬出來的 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_tbsk0pup" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoEN2.jpg" alt="時間是喬出來的" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>時間是喬出來的</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 天下有難事 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_pjxifuol" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoEN1.jpg" alt="天下有難事" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>天下有難事</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 喝咖啡與 PF -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_oxrpu1ix" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoEN4.jpg" alt="喝咖啡與 PF" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>喝咖啡與 PF</b></p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-------------------------------- 分頁：Coaching 紀錄片 -------------------------------->
+                    <li class="nacc-content">
+                        <div class="MovieNoteText">
+                            <ul>
+                                <li>本紀錄片區係透過 Milestone Programmes 及 Talent Development Programmes 等相關活動之精華片段，傳遞 Coaching 中 Learning &amp; Sharing 的精神。紀錄片陸續上架， 粉絲敬請期待。</li>
+                            </ul>
+                        </div>
+                        <!-- FY14 Coaching Champion Programme (CCP) 傳承紀錄片 -->
+                        <p class="MovieTypeItem"><i class="fas fa-play-circle"></i> FY14 Coaching Champion Programme (CCP) 傳承紀錄片</p>
+                        <p class="PwCVedioNote" style="padding-left:1.5rem;">「傳承」是 PwC 最重視的精神之一，今年度 CCP 邀請已結業的學姐們回來為新年度的學員導航，分享學習及實踐心得。透過他們的見證，你將發現 Coaching 的多元面貌！</p>
+                        <!-- HCC/劉美蘭 -->
+                        <div class="card_profile">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_43biiiy5" target="_blank">
+                                <div class="card_profile-img">
+                                    <img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCCP1.jpg" alt="HCC/劉美蘭" width="60" height="60">
+                                    <div class="card_profile-container"><b>HCC / 劉美蘭</b><br><span>收服人心招數大公開：AID 回饋 + 真心讚美</span></div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- ALE/洪子婷 -->
+                        <div class="card_profile">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_ujup6as1" target="_blank">
+                                <div class="card_profile-img">
+                                    <img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCCP2.jpg" alt="ALE/洪子婷" width="60" height="60">
+                                    <div class="card_profile-container"><b>ALE / 洪子婷</b><br><span>Coaching 是樁好投資，找對時點、用對方法，開心坐享美妙 ROI</span></div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- T2/黃舒榕 -->
+                        <div class="card_profile">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_g7smblae" target="_blank">
+                                <div class="card_profile-img">
+                                    <img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoCCP3.jpg" alt="T2/黃舒榕" width="60" height="60">
+                                    <div class="card_profile-container"><b>T2 / 黃舒榕</b><br><span>擴大你的 Coaching 圈，把同事、客戶、家人、朋友通通拉進來</span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <!-------------------------------- 分頁：Coaching 故事館 -------------------------------->
+                    <li class="nacc-content">
+                        <div class="MovieNoteText" style="margin-bottom: 15px;">
+                            <ul>
+                                <li>本故事館係 Coaching Champion Programme(CCP) 學員或其他所內同仁觀察周遭發生的 Coaching Story，分享所見、所聞及所感，邀您體會真實故事的魅力！</li>
+                                <li>如有任何建議，請聯繫 HC／<a href="mailto:tc.wang@tw.pwc.com?subject=關於 【Coaching 微電影】">TC Wang (TCWA)</a>。</li>
+                            </ul>
+                        </div>
+                        <!-- 討喜的問題-ASR8/劉又瑄 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_21f6gvs6" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoStory1.jpg" alt="討喜的問題-ASR8/劉又瑄" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>討喜的問題<br>ASR8 / 劉又瑄</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 沈默是金-ASR8/王人輝 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_ptoh1icx" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoStory2.jpg" alt="沈默是金-ASR8/王人輝" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>沈默是金<br>ASR8 / 王人輝</b></p>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 同樣的高度-IBS/洪慧萍 -->
+                        <div class="card">
+                            <a href="https://pwc.mediaspace.kaltura.com/media/id/0_74fo2qfc" target="_blank">
+                                <div class="card-img"><img src="https://pwc.csod.com/clientimg/pwc/welcome/TW/Coaching%20Spotlight/MoviePreviewPhotoStory3.jpg" alt="同樣的高度-IBS/洪慧萍" width="130" height="90"></div>
+                                <div class="card-container">
+                                    <p><b>同樣的高度<br>IBS / 洪慧萍</b></p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script>
+    function detectHeight() {
+        var listItemHeight = $(".naccs .nacc").find(".nacc-content.active").innerHeight();
+        $(".naccs .nacc").height(listItemHeight + "px");
+    };
+
+    $(document).ready(function() {
+        detectHeight();
+    });
+
+    $(window).resize(function() {
+        detectHeight();
+    })
+
+    $(document).on("click", ".naccs .menu div", function() {
+        var menuIndex = $(this).index();
+
+        if (!$(this).is("active")) {
+            $(".naccs .menu div").removeClass("active");
+            $(".naccs .nacc .nacc-content").removeClass("active");
+
+            $(this).addClass("active");
+            $(".naccs .nacc").find(".nacc-content:eq(" + menuIndex + ")").addClass("active");
+
+            detectHeight();
+        }
+    });
+    </script>
+</div>
